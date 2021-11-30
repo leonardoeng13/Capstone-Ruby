@@ -1,7 +1,7 @@
 class Calculator
   def check_date(last_played_at)
-    diff = Date.today - Date.parse(last_played_at)
-    true if diff > 2.years.ago.to_date
+    diff = Time.diff(Time.parse(Date.today) - Time.parse(last_played_at))
+    true if diff.years > 2
     false
   end
 end
