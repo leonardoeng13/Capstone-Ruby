@@ -199,17 +199,16 @@ module ItemIntializer
   def game_info
     print 'Last played at (yyyy-mm-dd): '
     date_answer = gets.chomp
-    last_played_at = date_answer
+    last_played_at = validate_date(date_answer)
 
     print 'Is it Multiplayer? [Y/N]: '
     answer = gets.chomp.downcase
     multiplayer = multiplayer?(answer)
 
     print 'Publish date (yyyy-mm-dd): '
-    publisher_answer = gets.chomp
-    publish_date = validate_date(date_answer)
+    publisher_answer = gets.chomp    
 
-    [last_played_at, publish_date, multiplayer]
+    [last_played_at, publisher_answer, multiplayer]
   end
 
   def game_author
