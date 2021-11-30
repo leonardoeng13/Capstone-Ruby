@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 #-------------------------------------------------------------------------------------#
 #                           Capstone Ruby Project                                     #
 # Project Participants: Leo de Andrade                                                #

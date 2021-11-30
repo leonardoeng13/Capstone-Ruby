@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # class Genre
 class Genre
   attr_reader :id, :items
