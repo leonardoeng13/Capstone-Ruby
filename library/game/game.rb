@@ -1,8 +1,11 @@
 require_relative './calculator'
 
 class Game < Item
-  def initialize(id, genre, author, source, label, publish_date, archived, multiplayer, last_played_at)
-    super(id, genre, author, source, label, publish_date, archived)
+  attr_accessor :last_played_at, :multiplayer
+  attr_reader :publish_date
+
+  def initialize(publish_date, multiplayer, last_played_at)
+    super(publish_date)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
     @calculator = Calculator.new
