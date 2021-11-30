@@ -14,15 +14,15 @@
 #-------------------------------------------------------------------------------------#
 
 #  rubocop:disable all
-require_relative 'genre'
-require '.lib/label/label'
-require '.lib/label/author'
-require '.lib/module/add_item_module'
-require '.lib/module/list_items_module'
-require '.lib/music/music_album_data'
-require '.lib/music/book_album_data'
-require '.lib/game/game_data'
-require '.lib/movie/movie'
+require_relative 'library/music/genre'
+require_relative 'library/label/label'
+require_relative 'library/book/author'
+require_relative 'library/module/add_item_module'
+require_relative 'library/module/list_items_module'
+require_relative 'library/music/music_album_data'
+require_relative 'library/book/book_album_data'
+require_relative 'library/game/game_data'
+require_relative 'library/movie/movie'
 require 'json'
 
 class App
