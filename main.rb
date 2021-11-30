@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 #-------------------------------------------------------------------------------------#
 #                           Capstone Ruby Project                                     #
 # Project Participants: Leo de Andrade                                                #
 #                       Herbert Orellana                                              #
 #                       Laylo Khodjaeva                                               #
-#                       Juan Luis G                                                   #   
+#                       Juan Luis G                                                   #
 #                                                                                     #
 # In this project, you will create a console app that will help you to keep a record  #
 # of different types of things you won: books, music albums, movies, and games.       #
@@ -12,7 +14,6 @@
 # analogical to your program's class structure.                                       #
 #                                                                                     #
 #-------------------------------------------------------------------------------------#
-
 
 #  rubocop:disable all
 require_relative 'genre'

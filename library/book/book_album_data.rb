@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require 'json'
 require_relative 'book'
 
+# module BookStorage
 module BookStorage
   def save_book
     @json_book = []

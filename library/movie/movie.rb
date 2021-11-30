@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require './item'
 
+# class Movie
 class Movie < Item
   attr_accessor :silent
 
