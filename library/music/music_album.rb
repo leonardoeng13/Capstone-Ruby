@@ -16,7 +16,7 @@ class MusicAlbum < Item
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'on_spotify' => @on_spotify
+      'on_spotify' => @on_spotify,
       'publish_date' => @publish_date,
     }.to_json(*args)
   end
