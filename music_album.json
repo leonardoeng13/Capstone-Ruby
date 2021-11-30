@@ -1,0 +1,12 @@
+[
+  {
+    "name": "test",
+    "publish_date": true,
+    "on_spotify": "2020-02-02"
+  },
+  {
+    "name": "test2",
+    "publish_date": false,
+    "on_spotify": "2020-02-02"
+  }
+]

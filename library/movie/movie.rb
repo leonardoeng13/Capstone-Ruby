@@ -4,8 +4,8 @@ require './item'
 class Movie < Item
   attr_accessor :silent
 
-  def initialize(publish_date:, silent:, archived: false, name: 'unknown')
-    super(publish_date: publish_date, archived: archived, name: name)
+  def initialize(silent:, publish_date:)
+    super(publish_date: publish_date)
     @silent = silent
   end
 

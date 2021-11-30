@@ -17,6 +17,7 @@ module ItemIntializer
     puts '1) Create a book 📗'
     puts '2) Create a Music Album 🎶'
     puts '3) Create a Game 🎮'
+    puts '4) Create a Movie 🎥'
     puts "\n"
   end
 
@@ -28,13 +29,15 @@ module ItemIntializer
       create_music_album
     when '3'
       create_game
+    when '4'
+      create_movie
     else
       "\nCould you please choose a valid number\n"
     end
   end
 
   def create_item
-    until %w[1 2 3].include?(@item_option)
+    until %w[1 2 3 4].include?(@item_option)
       items_option
       @item_option = gets.chomp
       add_selected_item
@@ -159,50 +162,82 @@ module ItemIntializer
     puts 'Music album created successfully ✔️'
   end
 
-
-end
-
-def game_info
-  print 'Last played at (yyyy-mm-dd): '
-  date_answer = gets.chomp
-  last_played_at = date_answer
-
-  print 'Is it Multiplayer? [Y/N]: '
-  answer = gets.chomp.downcase
-  multiplayer = multiplayer?(answer)
-
-  print 'Publish date (yyyy-mm-dd): '
-  publisher_answer = gets.chomp
-  publish_date = validate_date(date_answer)
-
-  [last_played_at, publish_date, multiplayer]
-end
-
-def game_author
-  list_author
-  print "\n Select your author by number: "
-  author_index = gets.chomp.to_i
-  @authors[author_index]
-end
-
-def create_game
-  publish_date, multiplayer, last_played_at = game_info
-  game = Game.new( publish_date, multiplayer, last_played_at)
-  author = game_author
-  author.add_item(game)
-  @games.push(game)
-  puts 'Game created successfully ✔️'
-end
-
-def multiplayer?(answer)
-  case answer
-  when 'n'
-    false
-  when 'y'
-    true
-  else
-    print 'Could you please specify your answer by [Y/N]: '
-    new_answer = gets.chomp
-    multiplayer?(new_answer)
+  # Movie handlers
+  def movie_name
+    print "Add your movie\'s name : "
+    gets.chomp.to_s
   end
- end
+
+  def is_silent?(answer)
+    true unless answer 'n'
+    false
+  end
+
+  def movie_info
+    name = movie_name
+    print 'Published date (yyyy-mm-dd): '
+    date_answer = gets.chomp
+    publish_date = validate_date(date_answer)
+
+    print 'Is it silent? [Y/N]: '
+
+    answer = gets.chomp.downcase
+    silent = is_silent?(answer)
+
+    [publish_date, silent, archived, name]
+  end
+
+  # Create Movie main method
+  def create_movie
+    publish_date, silent, archived, name = movie_info
+    movie = Movie.new(publish_date, silent, archived, name)
+    @movies << movie
+    puts 'Movie created successfully ✔️'
+  end
+
+
+  def game_info
+    print 'Last played at (yyyy-mm-dd): '
+    date_answer = gets.chomp
+    last_played_at = date_answer
+
+    print 'Is it Multiplayer? [Y/N]: '
+    answer = gets.chomp.downcase
+    multiplayer = multiplayer?(answer)
+
+    print 'Publish date (yyyy-mm-dd): '
+    publisher_answer = gets.chomp
+    publish_date = validate_date(date_answer)
+
+    [last_played_at, publish_date, multiplayer]
+  end
+
+  def game_author
+    list_author
+    print "\n Select your author by number: "
+    author_index = gets.chomp.to_i
+    @authors[author_index]
+  end
+
+  def create_game
+    publish_date, multiplayer, last_played_at = game_info
+    game = Game.new( publish_date, multiplayer, last_played_at)
+    author = game_author
+    author.add_item(game)
+    @games.push(game)
+    puts 'Game created successfully ✔️'
+  end
+
+  def multiplayer?(answer)
+    case answer
+    when 'n'
+      false
+    when 'y'
+      true
+    else
+      print 'Could you please specify your answer by [Y/N]: '
+      new_answer = gets.chomp
+      multiplayer?(new_answer)
+    end
+  end
+end

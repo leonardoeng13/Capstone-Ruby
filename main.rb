@@ -23,6 +23,7 @@ require_relative 'library/music/music_album_data'
 require_relative 'library/book/book_album_data'
 require_relative 'library/game/game_data'
 require_relative 'library/movie/movie'
+require_relative 'library/movie/movie_data'
 require 'json'
 
 class App
@@ -43,12 +44,13 @@ class App
     @titles = [Title.new('Spider-Man: Homecoming ', 'Jon Watts'),Title.new('Spider-Man: Far From Home', 'Jon Watts'),Title.new('Spider-Man: No Way Home', 'Jon Watts')]
     @authors = [Author.new('Stephen King', 'Horror'), Author.new('J.K. Rowling', 'Fantasy'), Author.new('Amy Tan', 'Fiction'), Author.new('Tana French', 'Crime fiction')]
     @choice_list = {
-      '1' => 'Create an Item',
+      '1' => 'Create an Item.',
       '2' => 'List all items.',
       '3' => 'List all genres.',
       '4' => 'List all labels.',
       '5' => 'List all authors.',
-      '6' => 'Exit'
+      '6' => 'List all titles.',
+      '7' => 'Exit'
     }  
   end
 
@@ -56,7 +58,6 @@ class App
     parse_music_albums
     parse_book
     parse_game
-    parse_movie
     puts "Welcome to the Catalog of your Things 🗂️ \n"
 
     loop do

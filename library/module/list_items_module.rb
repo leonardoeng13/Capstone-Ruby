@@ -43,7 +43,7 @@ module ListItems
   def list_music_albums
     puts "\n List of your Music Albums : "
     puts "\n ~ Your music albums list is empty ~" if @music_albums.empty?
-    @music_albums.each { |music_album| puts music_album }
+    @music_albums.each { |music_album| puts music_album.name }
   end
 
   def list_genres
