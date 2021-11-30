@@ -1,3 +1,4 @@
+require_relative '../../item'
 require_relative './calculator'
 
 class Game < Item
@@ -12,7 +13,7 @@ class Game < Item
   end
 
   def can_be_archived?
-    true if super.can_be_archive(self) && @calculator.check_date(last_played_at)
+    true if super.can_be_archive(self) && @calculator.check_date(@last_played_at)
     false
   end
 end
