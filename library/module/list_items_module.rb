@@ -14,6 +14,7 @@ module ListItems
     puts '1) List all books '
     puts '2) List all music albums'
     puts '3) List all games'
+    puts '4) List all movies'
     puts "\n"
   end
 
@@ -25,13 +26,15 @@ module ListItems
       list_music_albums
     when '3'
       list_games
+    when '4'
+      list_movies
     else
       "\nCould you please choose a valid number\n"
     end
   end
 
   def list_items
-    until %w[1 2 3].include?(@list_item_option)
+    until %w[1 2 3 4].include?(@list_item_option)
       list_items_option
       print 'Enter your option number here --> '
       @list_item_option = gets.chomp
@@ -71,5 +74,10 @@ module ListItems
   def list_author
     puts "\n List of authors : "
     @authors.each_with_index { |author, index| puts "#{index}) Author ~ #{author.first_name} #{author.last_name}" }
+  end
+
+  def list_movie
+    puts "\n List of labels: "
+    @titles.each_with_index { |title, index| puts"#{index}) Title: #{title.title} Color: #{title.color}"}
   end
 end

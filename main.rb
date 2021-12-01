@@ -87,6 +87,8 @@ class App
       list_genres
     when '4'
       list_label
+    when '5'
+      list_movie
     else
       puts 'That is not a valid option ❌'
     end
