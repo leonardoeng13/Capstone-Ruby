@@ -21,63 +21,33 @@ module ItemIntializer
     puts "\n"
   end
 
-  def add_selected_item
+  def add_selected_item(id)
     case @item_option
     when '1'
-      create_book
+      create_book(id)
     when '2'
-      create_music_album
+      create_music_album(id)
     when '3'
-      create_game
+      create_game(id)
     when '4'
-      create_movie
+      create_movie(id)
     else
       "\nCould you please choose a valid number\n"
     end
   end
 
-  def create_item
+  def create_item(id)
     until %w[1 2 3 4].include?(@item_option)
       items_option
       @item_option = gets.chomp
-      add_selected_item
+      add_selected_item(id)
     end
     @item_option = '0'
   end
 
-  # Music Album handlers
-  def music_album_name
-    print "Add your music album\'s name : "
-    gets.chomp.to_s
-  end
+  # Handlers for input
 
-  def music_album_info
-    name = music_album_name
-    print 'Published date (yyyy-mm-dd): '
-    date_answer = gets.chomp
-    publish_date = validate_date(date_answer)
-
-    print 'Is it on spotify? [Y/N]: '
-
-    answer = gets.chomp.downcase
-    on_spotify = on_spotify?(answer)
-
-    [name, publish_date, on_spotify]
-  end
-
-  def on_spotify?(answer)
-    case answer
-    when 'y'
-      true
-    when 'n'
-      false
-    else
-      print 'Could you please specify your answer by [y/n]: '
-      second_answer = gets.chomp
-      on_spotify?(second_answer)
-    end
-  end
-
+  # Date validation 
   def validate?(date)
     Date.iso8601(date.to_s)
     true
@@ -95,105 +65,87 @@ module ItemIntializer
     end
   end
 
-
-
-  def book_album_info
-    print 'Published date (yyyy-mm-dd): '
-    date_answer = gets.chomp
-    publish_date = validate_date(date_answer)
-
-    print 'Is it good or bad? [good/bad]: '
-    answer = gets.chomp.downcase
-    cover_state = cover_state?(answer)
-
-    print 'Who is the publisher ? '
-    publisher_answer = gets.chomp.downcase
-    publisher = publisher_answer
-
-    [publish_date, publisher, cover_state]
-  end
-
-  def book_label
-    list_label
-    print "\n Select you book label by number: "
-    label_index = gets.chomp.to_i
-    @labels[label_index]
-  end
-
-  def create_book
-    publish_date, publisher, cover_state = book_album_info
-    book_album = Book.new( publisher, cover_state, publish_date)
-    label = book_label
-    label.add_item(book_album)
-    @books.push(book_album)
-    puts 'Book created successfully ✔️'
-  end
-
+  # Book input handler
   def cover_state?(answer)
     case answer
     when 'bad'
-      false
+      'bad'
     when 'good'
-      true
+      'good'
     else
       print 'Could you please specify your answer by [good/bad]: '
       new_answer = gets.chomp
       cover_state?(new_answer)
     end
+  end 
+
+  # MusicAlbum input handler
+  def on_spotify?(answer)
+    case answer
+    when 'y'
+      true
+    when 'n'
+      false
+    else
+      print 'Could you please specify your answer by [y/n]: '
+      second_answer = gets.chomp
+      on_spotify?(second_answer)
+    end
   end
 
+  # Game input handler
 
-  # Add music album to genres
-  def music_album_genre
-    list_genres
-    print "\n Select you Music Album\'s genre by number:  "
-    genre_index = gets.chomp.to_i
-    @genres[genre_index]
+  def multiplayer?(answer)
+    case answer
+    when 'n'
+      false
+    when 'y'
+      true
+    else
+      print 'Could you please specify your answer by [Y/N]: '
+      new_answer = gets.chomp
+      multiplayer?(new_answer)
+    end
   end
 
-
-  # Create MusicAlbum main method
-  def create_music_album
-    name, publish_date, on_spotify = music_album_info
-    music_album = MusicAlbum.new(name, publish_date, on_spotify)
-    genre = music_album_genre
-    genre.add_item(music_album)
-    @music_albums << music_album
-    puts 'Music album created successfully ✔️'
+  # Movie input handler
+  def movie_name
+    print "Add your movie\'s source : "
+    gets.chomp.to_s
+  end
+  def is_silent?(answer)
+    true unless answer == 'n'
+    false
   end
 
-# Movie handlers
-def movie_name
-  print "Add your movie\'s source : "
-  gets.chomp.to_s
-end
-def is_silent?(answer)
-  true unless answer == 'n'
-  false
-end
-
-  def movie_info
-    name = movie_name
-    print 'Published date (yyyy-mm-dd): '
-    date_answer = gets.chomp
-    publish_date = validate_date(date_answer)
-
-    print 'Is it silent? [Y/N]: '
-
-    answer = gets.chomp.downcase
-    silent = is_silent?(answer)
-
-    [publish_date, silent, name]
+  # Request info to create item
+  def author_info
+    print "\n Author first name: "
+    author_first = gets.chomp
+    print "\n Author second name: "
+    author_second = gets.chomp
+    [author_first, author_second]
   end
 
-  # Create Movie main method
-  def create_movie
-    publish_date, silent, name = movie_info
-    movie = Movie.new(silent, publish_date, name)
-    @movies << movie
-    puts 'Movie created successfully ✔️'
+  def genre_info
+    print "\n Gender: "
+    genre = gets.chomp
+    genre
   end
 
+  def source_info
+    print "\n Source: "
+    source = gets.chomp
+    source
+  end
+
+  def label_info
+    print "\n Label title: "
+    title = gets.chomp
+    print "\n Label color: "
+    color = gets.chomp
+    [title, color]
+  end
 
   def game_info
     print 'Last played at (yyyy-mm-dd): '
@@ -210,11 +162,82 @@ end
     [last_played_at, publisher_answer, multiplayer]
   end
 
-  def game_author
-    list_author
-    print "\n Select your author by number: "
-    author_index = gets.chomp.to_i
-    @authors[author_index]
+  def book_info
+    print 'Published date (yyyy-mm-dd): '
+    date_answer = gets.chomp
+    publish_date = date_answer
+
+    print 'Is it good or bad? [good/bad]: '
+    answer = gets.chomp.downcase
+    cover_state = cover_state?(answer)
+
+    print 'Publisher\'s name: '
+    publisher = gets.chomp.downcase
+
+    [publish_date, publisher, cover_state]
+  end
+
+  def music_album_info
+    print "Add your music album\'s name : "
+    name = gets.chomp.to_s
+
+    print 'Published date (yyyy-mm-dd): '
+    date_answer = gets.chomp
+    publish_date = validate_date(date_answer)
+
+    print 'Is it on spotify? [Y/N]: '
+
+    answer = gets.chomp.downcase
+    on_spotify = on_spotify?(answer)
+
+    [name, publish_date, on_spotify]
+  end
+
+  def movie_info
+    name = movie_name
+    print 'Published date (yyyy-mm-dd): '
+    date_answer = gets.chomp
+    publish_date = validate_date(date_answer)
+
+    print 'Is it silent? [Y/N]: '
+
+    answer = gets.chomp.downcase
+    silent = is_silent?(answer)
+
+    [publish_date, silent, name]
+  end
+  
+  #Create items methods
+
+  def create_book(id)
+    publish_date, publisher, cover_state = book_info
+    author_first, author_second = author_info
+    label_title, label_color = label_info
+    genre = Genre.new(id, genre_info)
+    author = Author.new(id, author_first, author_second)
+    source = Source.new(id, source_info)
+    label = Label.new(id, label_title, label_color)
+
+    new_book = Book.new(id, genre, author, source, label, publisher, cover_state, publish_date)
+    puts new_book.can_be_archived?
+    @books << new_book if new_book.can_be_archived?
+    puts 'Book created successfully ✔️'
+  end
+
+  def create_music_album
+    name, publish_date, on_spotify = music_album_info
+    music_album = MusicAlbum.new(name, publish_date, on_spotify)
+    genre = music_album_genre
+    genre.add_item(music_album)
+    @music_albums << music_album
+    puts 'Music album created successfully ✔️'
+  end
+
+  def create_movie
+    publish_date, silent, name = movie_info
+    movie = Movie.new(silent, publish_date, name)
+    @movies << movie
+    puts 'Movie created successfully ✔️'
   end
 
   def create_game
@@ -226,16 +249,5 @@ end
     puts 'Game created successfully ✔️'
   end
 
-  def multiplayer?(answer)
-    case answer
-    when 'n'
-      false
-    when 'y'
-      true
-    else
-      print 'Could you please specify your answer by [Y/N]: '
-      new_answer = gets.chomp
-      multiplayer?(new_answer)
-    end
-  end
+  
 end

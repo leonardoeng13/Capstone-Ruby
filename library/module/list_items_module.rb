@@ -71,6 +71,12 @@ module ListItems
     @games.each { |game| puts game}
   end
 
+  def list_movies
+    puts "\n List of your Movies : "
+    puts "\n Your movies list is empty." if @movies.empty?
+    @movies.each { |movie| puts movie}
+  end
+
   def list_author
     puts "\n List of authors : "
     @authors.each_with_index { |author, index| puts "#{index}) Author ~ #{author.first_name} #{author.last_name}" }

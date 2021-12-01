@@ -17,7 +17,9 @@ class Game < Item
   end
 
   def can_be_archived?
-    Date.today > Date.iso8601(@last_played_at).next_year(2) || super
+    diff = Time.diff(Time.parse(Date.today) - Time.parse(last_played_at))
+    true if diff.years > 2
+    false
   end
 end
 # rubocop:enable Layout/LineLength

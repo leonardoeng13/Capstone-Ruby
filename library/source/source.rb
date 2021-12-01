@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # class Source
 class Source
   attr_accessor :id, :name, :items
 
-  def initialize(name)
-    @id = Random.rand(1..1000)
+  def initialize(id, name)
+    @id = id
     @name = name
     @items = []
   end

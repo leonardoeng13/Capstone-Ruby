@@ -6,6 +6,7 @@ class Movie < Item
 
   def initialize(silent, publish_date, name)
     super(publish_date: publish_date)
+    @name = name
     @silent = silent
     @name = name
   end

@@ -5,7 +5,8 @@ class Label
   attr_accessor :color, :title
   attr_reader :items
 
-  def initialize(title, color)
+  def initialize(id, title, color)
+    @id = id
     @title = title
     @color = color
     @items = []

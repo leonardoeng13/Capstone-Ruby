@@ -1,11 +1,11 @@
-require 'date'
+require 'time_diff'
 
 # Create class ITEM
 class Item
   attr_accessor :publish_date, :genre, :author, :label
   attr_reader :id
 
-  def initialize(publish_date)
+  def initialize(id, genre, author, source, label, publish_date)
     @id = Random.rand(1..10_000)
     @genre = nil
     @author = nil
@@ -19,8 +19,8 @@ class Item
   end
 
   def can_be_archived?
-    archived_date = Date.iso8601(@publish_date).next_year(10)
-    Date.today > archived_date
+    diff = Time.diff(Date.parse(@publish_date), Date.today)
+    diff[:year] > 10
   end
 
   private :can_be_archived?

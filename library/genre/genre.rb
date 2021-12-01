@@ -1,12 +1,12 @@
 # Genre Class
-require_relative 'music_album'
+require_relative '../music/music_album'
 
 class Genre
   attr_reader :name, :items
 
-  def initialize(name)
-    @id = Random.rand(1..1000)
+  def initialize(id, name)
     @name = name
+    @id = id
     @items = []
   end
 

@@ -14,11 +14,11 @@
 #-------------------------------------------------------------------------------------#
 
 #  rubocop:disable all
-require_relative 'library/music/genre'
+require_relative 'library/genre/genre'
 require_relative 'library/label/label'
-require_relative 'library/book/author'
-require_relative 'library/movie/source'
-require_relative 'library/book/book_album_data'
+require_relative 'library/author/author'
+require_relative 'library/source/source'
+require_relative 'library/book/book_data'
 require_relative 'library/music/music_album_data'
 require_relative 'library/game/game_data'
 require_relative 'library/movie/movie_data'
@@ -39,10 +39,7 @@ class App
     @music_albums = []
     @games = []
     @movies = []
-    @genres = [Genre.new('Jazz'), Genre.new('Classical Music'), Genre.new('Blues'), Genre.new('Rock'), Genre.new('RnB'), Genre.new('Pop')]
-    @labels = [Label.new('Love at the end of the day.', 'Blue'),Label.new('May I love you?', 'Red'),Label.new('The love of my lives.', 'Grey')]
-    @titles = [Source.new('From a friend'), Source.new('Online shoping'), Source.new('From grandpa')]
-    @authors = [Author.new('Stephen King', 'Horror'), Author.new('J.K. Rowling', 'Fantasy'), Author.new('Amy Tan', 'Fiction'), Author.new('Tana French', 'Crime fiction')]
+    @ids = (1...10000).to_a.shuffle
     @choice_list = {
       '1' => 'Create an Item.',
       '2' => 'List all items.',
@@ -80,7 +77,7 @@ class App
   def handle_option(option)
     case option
     when '1'
-      create_item
+      create_item(@ids.pop)
     when '2'
       list_items
     when '3'
