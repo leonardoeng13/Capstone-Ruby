@@ -1,17 +1,7 @@
 [
   {
-    "publisher": "pedro",
-    "cover_state": false,
-    "publish_date": "2020-02"
-  },
-  {
-    "publisher": "pedro",
-    "cover_state": false,
-    "publish_date": "2020-02-02"
-  },
-  {
-    "publisher": "juan",
-    "cover_state": false,
+    "publisher": "juanit",
+    "cover_state": true,
     "publish_date": "2020-02-02"
   }
 ]

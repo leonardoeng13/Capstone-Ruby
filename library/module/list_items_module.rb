@@ -83,6 +83,6 @@ module ListItems
 
   def list_movies
     puts "\n List of Movies: "
-    @movies.each_with_index { |movie, index| puts"#{index}) Title: #{movie.name}"}
+    @movies.each_with_index { |movie, index| puts"#{index}) Movie: #{movie.name}"}
   end
 end
