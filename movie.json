@@ -1,9 +1,11 @@
 [
   {
-    "Source": "spiderman2",
-    "silent": false,
+    "Source": {
+      "publish_date": null
+    },
+    "silent": null,
     "publish_date": {
-      "publish_date": "2020-02-02"
+      "publish_date": null
     }
   }
 ]
