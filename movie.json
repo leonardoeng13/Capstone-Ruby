@@ -7,5 +7,12 @@
     "publish_date": {
       "publish_date": null
     }
+  },
+  {
+    "Source": "Die Hard",
+    "silent": false,
+    "publish_date": {
+      "publish_date": "1980-12-01"
+    }
   }
 ]

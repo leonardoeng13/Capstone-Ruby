@@ -1,7 +1,7 @@
 [
   {
     "name": "peaches",
-    "publish_date": true,
-    "on_spotify": "2020-02-02"
+    "publish_date": "2020-02-02",
+    "on_spotify": true
   }
 ]

@@ -50,8 +50,7 @@ class App
       '4' => 'List all labels.',
       '5' => 'List all sources.',
       '6' => 'List all authors.',
-      '7' => 'List all movies.',
-      '8' => 'Exit'
+      '7' => 'Exit'
     }  
   end
 
@@ -70,7 +69,7 @@ class App
       end
       print "\nYour option ==> "
       option = gets.chomp
-      if option == '8'
+      if option == '7'
         exit
         break
       end
@@ -93,8 +92,6 @@ class App
       list_sources
     when '6'
       list_author
-    when '7'
-      list_movies
     else
       puts 'That is not a valid option ❌'
     end
