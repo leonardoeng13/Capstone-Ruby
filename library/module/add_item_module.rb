@@ -162,15 +162,16 @@ module ItemIntializer
     puts 'Music album created successfully ✔️'
   end
 
-# Movie handlers
-def movie_name
-  print "Add your movie\'s source : "
-  gets.chomp.to_s
-end
-def is_silent?(answer)
-  true unless answer == 'n'
-  false
-end
+  # Movie handlers
+  def movie_name
+    print "Add your movie\'s name : "
+    gets.chomp.to_s
+  end
+
+  def is_silent?(answer)
+    true unless answer == 'n'
+    false
+  end
 
   def movie_info
     name = movie_name

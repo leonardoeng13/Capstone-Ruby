@@ -6,7 +6,7 @@ module MovieStorage
   def save_movie
     @json_movie = []
     @movies.each do |movie|
-      @json_movie.push('Studio' => movie.name, 'silent' => movie.silent,
+      @json_movie.push('Source' => movie.name, 'silent' => movie.silent,
                        'publish_date' => movie.publish_date)
     end
     File.write('movie.json', JSON.pretty_generate(@json_movie))

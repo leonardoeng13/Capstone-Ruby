@@ -41,16 +41,17 @@ class App
     @movies = []
     @genres = [Genre.new('Jazz'), Genre.new('Classical Music'), Genre.new('Blues'), Genre.new('Rock'), Genre.new('RnB'), Genre.new('Pop')]
     @labels = [Label.new('Love at the end of the day.', 'Blue'),Label.new('May I love you?', 'Red'),Label.new('The love of my lives.', 'Grey')]
-    @titles = [Source.new('From a friend'), Source.new('Online shoping'), Source.new('From grandpa')]
+    @sources = [Source.new('From a friend'), Source.new('Online shoping'), Source.new('From grandpa')]
     @authors = [Author.new('Stephen King', 'Horror'), Author.new('J.K. Rowling', 'Fantasy'), Author.new('Amy Tan', 'Fiction'), Author.new('Tana French', 'Crime fiction')]
     @choice_list = {
       '1' => 'Create an Item.',
       '2' => 'List all items.',
       '3' => 'List all genres.',
       '4' => 'List all labels.',
-      '5' => 'List all authors.',
-      '6' => 'List all titles.',
-      '7' => 'Exit'
+      '5' => 'List all sources.',
+      '6' => 'List all authors.',
+      '7' => 'List all movies.',
+      '8' => 'Exit'
     }  
   end
 
@@ -58,6 +59,7 @@ class App
     parse_music_albums
     parse_book
     parse_game
+    parse_movie
     puts "Welcome to the Catalog of your Things 🗂️ \n"
 
     loop do
@@ -68,7 +70,7 @@ class App
       end
       print "\nYour option ==> "
       option = gets.chomp
-      if option == '7'
+      if option == '8'
         exit
         break
       end
@@ -88,7 +90,11 @@ class App
     when '4'
       list_label
     when '5'
-      list_movie
+      list_sources
+    when '6'
+      list_author
+    when '7'
+      list_movies
     else
       puts 'That is not a valid option ❌'
     end

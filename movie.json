@@ -1,3 +1,9 @@
 [
-
+  {
+    "Source": "cinema",
+    "silent": false,
+    "publish_date": {
+      "publish_date": "2020-02-02"
+    }
+  }
 ]

@@ -72,12 +72,17 @@ module ListItems
   end
 
   def list_author
-    puts "\n List of authors : "
+    puts "\n List of Authors : "
     @authors.each_with_index { |author, index| puts "#{index}) Author ~ #{author.first_name} #{author.last_name}" }
   end
 
-  def list_movie
-    puts "\n List of labels: "
-    @titles.each_with_index { |title, index| puts"#{index}) Title: #{title.title} Color: #{title.color}"}
+  def list_sources
+    puts "\n List of genres : "
+    @sources.each_with_index { |source, index| puts "#{index}) Genre ~ #{source.name}" }
+  end
+
+  def list_movies
+    puts "\n List of Movies: "
+    @movies.each_with_index { |movie, index| puts"#{index}) Title: #{movie.name}"}
   end
 end
