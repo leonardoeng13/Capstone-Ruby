@@ -2,10 +2,11 @@ require_relative '../../item'
 
 # class MusicAlbum
 class MusicAlbum < Item
-  attr_accessor :on_spotify, :publish_date
+  attr_accessor :on_spotify, :publish_date, :name
 
-  def initialize(on_spotify, publish_date)
+  def initialize(name, on_spotify, publish_date)
     super(publish_date)
+    @name = name
     @on_spotify = on_spotify
   end
 

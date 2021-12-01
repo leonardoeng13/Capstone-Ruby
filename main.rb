@@ -14,15 +14,16 @@
 #-------------------------------------------------------------------------------------#
 
 #  rubocop:disable all
-require_relative 'genre'
-require '.lib/label/label'
-require '.lib/label/author'
-require '.lib/module/add_item_module'
-require '.lib/module/list_items_module'
-require '.lib/music/music_album_data'
-require '.lib/music/book_album_data'
-require '.lib/game/game_data'
-require '.lib/movie/movie'
+require_relative 'library/music/genre'
+require_relative 'library/label/label'
+require_relative 'library/book/author'
+require_relative 'library/movie/source'
+require_relative 'library/book/book_album_data'
+require_relative 'library/music/music_album_data'
+require_relative 'library/game/game_data'
+require_relative 'library/movie/movie_data'
+require_relative 'library/module/add_item_module'
+require_relative 'library/module/list_items_module'
 require 'json'
 
 class App
@@ -40,15 +41,16 @@ class App
     @movies = []
     @genres = [Genre.new('Jazz'), Genre.new('Classical Music'), Genre.new('Blues'), Genre.new('Rock'), Genre.new('RnB'), Genre.new('Pop')]
     @labels = [Label.new('Love at the end of the day.', 'Blue'),Label.new('May I love you?', 'Red'),Label.new('The love of my lives.', 'Grey')]
-    @titles = [Title.new('Spider-Man: Homecoming ', 'Jon Watts'),Title.new('Spider-Man: Far From Home', 'Jon Watts'),Title.new('Spider-Man: No Way Home', 'Jon Watts')]
+    @sources = [Source.new('From a friend'), Source.new('Online shoping'), Source.new('From grandpa')]
     @authors = [Author.new('Stephen King', 'Horror'), Author.new('J.K. Rowling', 'Fantasy'), Author.new('Amy Tan', 'Fiction'), Author.new('Tana French', 'Crime fiction')]
     @choice_list = {
-      '1' => 'Create an Item',
+      '1' => 'Create an Item.',
       '2' => 'List all items.',
       '3' => 'List all genres.',
       '4' => 'List all labels.',
-      '5' => 'List all authors.',
-      '6' => 'Exit'
+      '5' => 'List all sources.',
+      '6' => 'List all authors.',
+      '7' => 'Exit'
     }  
   end
 
@@ -67,7 +69,7 @@ class App
       end
       print "\nYour option ==> "
       option = gets.chomp
-      if option == '6'
+      if option == '7'
         exit
         break
       end
@@ -86,6 +88,10 @@ class App
       list_genres
     when '4'
       list_label
+    when '5'
+      list_sources
+    when '6'
+      list_author
     else
       puts 'That is not a valid option ❌'
     end
