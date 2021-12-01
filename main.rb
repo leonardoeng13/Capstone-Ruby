@@ -17,13 +17,13 @@
 require_relative 'library/music/genre'
 require_relative 'library/label/label'
 require_relative 'library/book/author'
+require_relative 'library/movie/source'
+require_relative 'library/book/book_album_data'
+require_relative 'library/music/music_album_data'
+require_relative 'library/game/game_data'
+require_relative 'library/movie/movie_data'
 require_relative 'library/module/add_item_module'
 require_relative 'library/module/list_items_module'
-require_relative 'library/music/music_album_data'
-require_relative 'library/book/book_album_data'
-require_relative 'library/game/game_data'
-require_relative 'library/movie/movie'
-require_relative 'library/movie/movie_data'
 require 'json'
 
 class App
@@ -41,7 +41,7 @@ class App
     @movies = []
     @genres = [Genre.new('Jazz'), Genre.new('Classical Music'), Genre.new('Blues'), Genre.new('Rock'), Genre.new('RnB'), Genre.new('Pop')]
     @labels = [Label.new('Love at the end of the day.', 'Blue'),Label.new('May I love you?', 'Red'),Label.new('The love of my lives.', 'Grey')]
-    @titles = [Title.new('Spider-Man: Homecoming ', 'Jon Watts'),Title.new('Spider-Man: Far From Home', 'Jon Watts'),Title.new('Spider-Man: No Way Home', 'Jon Watts')]
+    @titles = [Source.new('From a friend'), Source.new('Online shoping'), Source.new('From grandpa')]
     @authors = [Author.new('Stephen King', 'Horror'), Author.new('J.K. Rowling', 'Fantasy'), Author.new('Amy Tan', 'Fiction'), Author.new('Tana French', 'Crime fiction')]
     @choice_list = {
       '1' => 'Create an Item.',
@@ -68,7 +68,7 @@ class App
       end
       print "\nYour option ==> "
       option = gets.chomp
-      if option == '6'
+      if option == '7'
         exit
         break
       end

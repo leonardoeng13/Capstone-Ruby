@@ -162,16 +162,15 @@ module ItemIntializer
     puts 'Music album created successfully ✔️'
   end
 
-  # Movie handlers
-  def movie_name
-    print "Add your movie\'s name : "
-    gets.chomp.to_s
-  end
-
-  def is_silent?(answer)
-    true unless answer 'n'
-    false
-  end
+# Movie handlers
+def movie_name
+  print "Add your movie\'s source : "
+  gets.chomp.to_s
+end
+def is_silent?(answer)
+  true unless answer == 'n'
+  false
+end
 
   def movie_info
     name = movie_name
@@ -184,13 +183,13 @@ module ItemIntializer
     answer = gets.chomp.downcase
     silent = is_silent?(answer)
 
-    [publish_date, silent, archived, name]
+    [publish_date, silent, name]
   end
 
   # Create Movie main method
   def create_movie
-    publish_date, silent, archived, name = movie_info
-    movie = Movie.new(publish_date, silent, archived, name)
+    publish_date, silent, name = movie_info
+    movie = Movie.new(silent, publish_date, name)
     @movies << movie
     puts 'Movie created successfully ✔️'
   end
