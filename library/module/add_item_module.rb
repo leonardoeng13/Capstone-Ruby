@@ -221,8 +221,6 @@ module ItemIntializer
   def create_game
     publish_date, multiplayer, last_played_at = game_info
     game = Game.new( publish_date, multiplayer, last_played_at)
-    author = game_author
-    author.add_item(game)
     @games.push(game)
     puts 'Game created successfully ✔️'
   end
