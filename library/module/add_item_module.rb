@@ -124,7 +124,7 @@ module ItemIntializer
   end
 
   def genre_info
-    print "\n Gender: "
+    print "\n Genre: "
     genre = gets.chomp
     genre
   end
@@ -210,6 +210,11 @@ module ItemIntializer
     source = Source.new(id, source_info)
     label = Label.new(id, label_title, label_color)
 
+    @genres << genre
+    @authors << author
+    @sources << source
+    @labels << label
+
     new_book = Book.new(id, genre, author, source, label, publisher, cover_state, publish_date)
     @books << new_book if new_book.can_be_archived?
     puts 'Book created successfully ✔️'
@@ -223,8 +228,14 @@ module ItemIntializer
     author = Author.new(id, author_first, author_second)
     source = Source.new(id, source_info)
     label = Label.new(id, label_title, label_color)
+
+    @genres << genre
+    @authors << author
+    @sources << source
+    @labels << label
     
     new_music_album = MusicAlbum.new(id, genre, author, source, label, on_spotify, publish_date)
+    puts new_music_album.on_spotify
     @music_albums << new_music_album if new_music_album.can_be_archived?
     puts 'Music album created successfully ✔️'
   end
@@ -237,6 +248,11 @@ module ItemIntializer
     author = Author.new(id, author_first, author_second)
     source = Source.new(id, source_info)
     label = Label.new(id, label_title, label_color)
+
+    @genres << genre
+    @authors << author
+    @sources << source
+    @labels << label
 
     new_movie = Movie.new(id, genre, author, source, label, silent, publish_date)
     @movies << new_movie if new_movie.can_be_archived?
@@ -251,6 +267,11 @@ module ItemIntializer
     author = Author.new(id, author_first, author_second)
     source = Source.new(id, source_info)
     label = Label.new(id, label_title, label_color)
+
+    @genres << genre
+    @authors << author
+    @sources << source
+    @labels << label
 
     new_game = Game.new(id, genre, author, source, label, multiplayer, last_played_at, publish_date)
     @games << new_game if new_game.can_be_archived?

@@ -39,6 +39,10 @@ class App
     @music_albums = []
     @games = []
     @movies = []
+    @genres = []
+    @authors = []
+    @sources = []
+    @labels = []
     @ids = (1...10000).to_a.shuffle
     @choice_list = {
       '1' => 'Create an Item.',
@@ -89,6 +93,7 @@ class App
     else
       puts 'That is not a valid option ❌'
     end
+    option = ''
   end
 
   def exit

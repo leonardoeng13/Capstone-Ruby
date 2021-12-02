@@ -44,46 +44,46 @@ module ListItems
   end
 
   def list_music_albums
-    puts "\n List of your Music Albums : "
+    puts "\nList of your Music Albums : "
     puts "\n ~ Your music albums list is empty ~" if @music_albums.empty?
-    @music_albums.each { |music_album| puts music_album.name }
-  end
-
-  def list_genres
-    puts "\n List of genres : "
-    @genres.each_with_index { |genre, index| puts "#{index}) Genre ~ #{genre.name}" }
+    @music_albums.each { |music_album| puts music_album.label.title }
   end
 
   def list_books
-    puts "\n List of your Books : "
+    puts "\nList of your Books : "
     puts "\n Your books list is empty." if @books.empty?
     @books.each { |book| puts book}
   end
 
-  def list_label
-    puts "\n List of labels: "
-    @labels.each_with_index { |label, index| puts"#{index}) Title: #{label.title} Color: #{label.color}"}
-  end
-
   def list_games
-    puts "\n List of your Games : "
+    puts "\nList of your Games : "
     puts "\n Your games list is empty." if @games.empty?
     @games.each { |game| puts game}
   end
 
   def list_movies
-    puts "\n List of your Movies : "
+    puts "\nList of your Movies : "
     puts "\n Your movies list is empty." if @movies.empty?
-    @movies.each { |movie| puts movie}
+    @movies.each { |movie| puts movie.label.title}
+  end
+
+  def list_label
+    puts "\nList of labels: "
+    @labels.each_with_index { |label, index| puts"#{index}) Title: #{label.title} Color: #{label.color}"}
+  end
+
+  def list_source
+    puts "\nList of sources: "
+    @sources.each_with_index { |source, index| puts"#{index}) Title: #{source.name}"}
+  end
+
+  def list_genres
+    puts "\nList of genres : "
+    @genres.each_with_index { |genre, index| puts "#{index}) Genre ~ #{genre.name}"}
   end
 
   def list_author
-    puts "\n List of authors : "
-    @authors.each_with_index { |author, index| puts "#{index}) Author ~ #{author.first_name} #{author.last_name}" }
-  end
-
-  def list_movie
-    puts "\n List of labels: "
-    @titles.each_with_index { |title, index| puts"#{index}) Title: #{title.title} Color: #{title.color}"}
+    puts "\nList of authors : "
+    @authors.each_with_index { |author, index| puts "#{index}) Author ~ #{author.first_name} #{author.last_name}"}
   end
 end

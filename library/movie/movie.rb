@@ -11,7 +11,7 @@ class Movie < Item
   end
 
   def can_be_archived?
-    super() || @silent
+    super || @silent
   end
 
   def to_json(*args)
@@ -24,7 +24,5 @@ class Movie < Item
       'archived' => @archived
     }.to_json(*args)
   end
-
-  private :can_be_archived?
 end
 # rubocop:enable Metrics/ParameterLists

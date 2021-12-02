@@ -22,6 +22,7 @@ class Item
 
   def can_be_archived?
     diff = Time.diff(Date.parse(@publish_date), Date.today)
+    puts diff[:year] > 10
     diff[:year] > 10
   end
 
