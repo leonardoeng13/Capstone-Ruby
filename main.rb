@@ -13,7 +13,7 @@
 #                                                                                     #
 #-------------------------------------------------------------------------------------#
 
-require_relative './library/module/app'
+require_relative './module/app'
 
 def main
   app = App.new
