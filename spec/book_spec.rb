@@ -1,18 +1,26 @@
-require_relative '../library/book/book'
+require_relative 'spec_helper'
 
 describe Book do
-  before :each do
-    @book_album = [Book.new('Oracle for developers', 'Old', '2003-04-15'),
-                   Book.new('head first ruby a brain-friendly guide', 'New', '2021-11-30')]
-  end
+  describe '#can_be_archived' do
+    context 'when published over 10 years' do
+      item = Book.new('Oracle', 'good', Time.new(2003, 7, 30))
+      it 'can be archived' do
+        expect(item.can_be_archived?).to be_truthy
+      end
+    end
 
-  it 'Can be archived?' do
-    can_be_archived = @book_album[0].send(:can_be_archived?)
-    expect(can_be_archived).to be true
-  end
+    context 'when cover state is bad' do
+      it 'cannot be archived' do
+        item = Book.new('Postgres', 'bad', Time.now)
+        expect(item.can_be_archived?).to be_truthy
+      end
+    end
 
-  it 'Can be archived?' do
-    can_be_archived = @book_album[1].send(:can_be_archived?)
-    expect(can_be_archived).to be false
+    context 'when cover state is good' do
+      it 'cannot be archived' do
+        item = Book.new('Oracle', 'good', Time.now)
+        expect(item.can_be_archived?).to be_falsey
+      end
+    end
   end
 end

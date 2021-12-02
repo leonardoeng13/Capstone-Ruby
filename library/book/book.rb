@@ -1,24 +1,33 @@
-# rubocop:disable Layout/LineLength
-require './item'
-# Create class Book
+require_relative '../../module/item'
+
 class Book < Item
   attr_accessor :publisher, :cover_state
-  attr_reader :publish_date
 
-  def initialize(publisher, cover_state, publish_date)
-    super(publish_date)
+  def initialize(publisher, cover_state, *args)
+    super(*args)
     @publisher = publisher
     @cover_state = cover_state
   end
 
-  def to_s
-    "Publisher\'s name : \"#{@publisher}\" ~ Published on : #{@publish_date} ~ Cover state: #{cover_state ? 'Good state' : 'Bad state'}"
+  def can_be_archived?
+    super || @cover_state == 'bad'
   end
 
-  private
+  def to_s
+    "[Book] Publisher: \"#{@publisher}\", Cover State: #{@cover_state}, #{super}"
+  end
 
-  def can_be_archived?
-    @cover_state == 'bad' || super
+  def to_json(*args)
+    super.merge({
+                  JSON.create_id => self.class.name,
+                  'publisher' => @publisher,
+                  'cover_state' => @cover_state
+                }).to_json(*args)
+  end
+
+  def self.json_create(object)
+    book = new(object['publisher'], object['cover_state'], Time.parse(object['publish_date']))
+    book.id = object['id']
+    book
   end
 end
-# rubocop:enable Layout/LineLength
