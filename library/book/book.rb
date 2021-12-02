@@ -21,3 +21,4 @@ class Book < Item
   end
 end
 # rubocop:enable Layout/LineLength
+# rubocop:enable Metrics/ParameterLists

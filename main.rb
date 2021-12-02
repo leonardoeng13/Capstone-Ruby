@@ -85,7 +85,7 @@ class App
     when '4'
       list_label
     when '5'
-      list_movie
+      list_source
     else
       puts 'That is not a valid option ❌'
     end

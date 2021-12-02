@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../library/movie/movie'
 
 describe Movie do

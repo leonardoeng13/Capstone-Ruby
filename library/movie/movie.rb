@@ -1,14 +1,13 @@
+# rubocop:disable Metrics/ParameterLists
 require './item'
 
 # class Movie
 class Movie < Item
   attr_accessor :silent
 
-  def initialize(silent, publish_date, name)
-    super(publish_date: publish_date)
-    @name = name
+  def initialize(id, genre, author, source, label, silent, publish_date)
+    super(id, genre, author, source, label, publish_date)
     @silent = silent
-    @name = name
   end
 
   def can_be_archived?
@@ -28,3 +27,4 @@ class Movie < Item
 
   private :can_be_archived?
 end
+# rubocop:enable Metrics/ParameterLists

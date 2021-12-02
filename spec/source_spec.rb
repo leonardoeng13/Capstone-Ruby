@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../library/movie/source'
 require_relative '../library/movie/item'
 
@@ -28,4 +26,3 @@ describe Source do
     expect(item.source).to eql @source
   end
 end
-

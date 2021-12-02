@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ParameterLists
 require 'time_diff'
 
 # Create class ITEM
@@ -6,10 +7,11 @@ class Item
   attr_reader :id
 
   def initialize(id, genre, author, source, label, publish_date)
-    @id = Random.rand(1..10_000)
-    @genre = nil
-    @author = nil
-    @label = nil
+    @id = id
+    @genre = genre
+    @author = author
+    @source = source
+    @label = label
     @publish_date = publish_date
     @archived = false
   end
@@ -25,3 +27,4 @@ class Item
 
   private :can_be_archived?
 end
+# rubocop:enable Metrics/ParameterLists

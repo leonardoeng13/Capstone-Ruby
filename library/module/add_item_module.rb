@@ -109,10 +109,6 @@ module ItemIntializer
   end
 
   # Movie input handler
-  def movie_name
-    print "Add your movie\'s source : "
-    gets.chomp.to_s
-  end
   def is_silent?(answer)
     true unless answer == 'n'
     false
@@ -178,9 +174,6 @@ module ItemIntializer
   end
 
   def music_album_info
-    print "Add your music album\'s name : "
-    name = gets.chomp.to_s
-
     print 'Published date (yyyy-mm-dd): '
     date_answer = gets.chomp
     publish_date = validate_date(date_answer)
@@ -190,11 +183,10 @@ module ItemIntializer
     answer = gets.chomp.downcase
     on_spotify = on_spotify?(answer)
 
-    [name, publish_date, on_spotify]
+    [publish_date, on_spotify]
   end
 
   def movie_info
-    name = movie_name
     print 'Published date (yyyy-mm-dd): '
     date_answer = gets.chomp
     publish_date = validate_date(date_answer)
@@ -204,7 +196,7 @@ module ItemIntializer
     answer = gets.chomp.downcase
     silent = is_silent?(answer)
 
-    [publish_date, silent, name]
+    [publish_date, silent]
   end
   
   #Create items methods
@@ -219,35 +211,49 @@ module ItemIntializer
     label = Label.new(id, label_title, label_color)
 
     new_book = Book.new(id, genre, author, source, label, publisher, cover_state, publish_date)
-    puts new_book.can_be_archived?
     @books << new_book if new_book.can_be_archived?
     puts 'Book created successfully ✔️'
   end
 
-  def create_music_album
-    name, publish_date, on_spotify = music_album_info
-    music_album = MusicAlbum.new(name, publish_date, on_spotify)
-    genre = music_album_genre
-    genre.add_item(music_album)
-    @music_albums << music_album
+  def create_music_album(id)
+    publish_date, on_spotify = music_album_info
+    author_first, author_second = author_info
+    label_title, label_color = label_info
+    genre = Genre.new(id, genre_info)
+    author = Author.new(id, author_first, author_second)
+    source = Source.new(id, source_info)
+    label = Label.new(id, label_title, label_color)
+    
+    new_music_album = MusicAlbum.new(id, genre, author, source, label, on_spotify, publish_date)
+    @music_albums << new_music_album if new_music_album.can_be_archived?
     puts 'Music album created successfully ✔️'
   end
 
-  def create_movie
-    publish_date, silent, name = movie_info
-    movie = Movie.new(silent, publish_date, name)
-    @movies << movie
+  def create_movie(id)
+    publish_date, silent = movie_info
+    author_first, author_second = author_info
+    label_title, label_color = label_info
+    genre = Genre.new(id, genre_info)
+    author = Author.new(id, author_first, author_second)
+    source = Source.new(id, source_info)
+    label = Label.new(id, label_title, label_color)
+
+    new_movie = Movie.new(id, genre, author, source, label, silent, publish_date)
+    @movies << new_movie if new_movie.can_be_archived?
     puts 'Movie created successfully ✔️'
   end
 
-  def create_game
+  def create_game(id)
     publish_date, multiplayer, last_played_at = game_info
-    game = Game.new( publish_date, multiplayer, last_played_at)
-    author = game_author
-    author.add_item(game)
-    @games.push(game)
+    author_first, author_second = author_info
+    label_title, label_color = label_info
+    genre = Genre.new(id, genre_info)
+    author = Author.new(id, author_first, author_second)
+    source = Source.new(id, source_info)
+    label = Label.new(id, label_title, label_color)
+
+    new_game = Game.new(id, genre, author, source, label, multiplayer, last_played_at, publish_date)
+    @games << new_game if new_game.can_be_archived?
     puts 'Game created successfully ✔️'
   end
-
-  
 end

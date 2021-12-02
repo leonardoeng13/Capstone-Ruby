@@ -1,13 +1,15 @@
 # rubocop:disable Layout/LineLength
+# rubocop:disable Metrics/ParameterLists
 require_relative '../../item'
+require 'time_diff'
 
 # Create class Game
 class Game < Item
   attr_accessor :last_played_at, :multiplayer
   attr_reader :publish_date
 
-  def initialize(last_played_at, multiplayer, publish_date)
-    super(publish_date)
+  def initialize(id, genre, author, source, label, last_played_at, multiplayer, publish_date)
+    super(id, genre, author, source, label, publish_date)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
@@ -17,9 +19,9 @@ class Game < Item
   end
 
   def can_be_archived?
-    diff = Time.diff(Time.parse(Date.today) - Time.parse(last_played_at))
-    true if diff.years > 2
-    false
+    diff = Time.diff(Date.parse(@last_played_at), Date.today)
+    diff[:year] > 2 && super
   end
 end
 # rubocop:enable Layout/LineLength
+# rubocop:enable Metrics/ParameterLists
